@@ -1,0 +1,186 @@
+[
+  {
+    "width": 1440,
+    "overflow": false,
+    "pageHeight": 6746,
+    "mainWords": 726,
+    "sections": [
+      {
+        "name": "hero",
+        "height": 749
+      },
+      {
+        "name": "section intro",
+        "height": 284
+      },
+      {
+        "name": "features",
+        "height": 820
+      },
+      {
+        "name": "how-it-works",
+        "height": 930
+      },
+      {
+        "name": "app-preview",
+        "height": 950
+      },
+      {
+        "name": "privacy",
+        "height": 956
+      },
+      {
+        "name": "download",
+        "height": 1105
+      },
+      {
+        "name": "faq",
+        "height": 606
+      }
+    ],
+    "imagesLoaded": true,
+    "apkLinks": 0,
+    "downloadDisabled": true,
+    "reducedMotion": true,
+    "faqCount": 7,
+    "developmentNotes": false
+  },
+  {
+    "width": 768,
+    "overflow": false,
+    "pageHeight": 6596,
+    "mainWords": 726,
+    "sections": [
+      {
+        "name": "hero",
+        "height": 643
+      },
+      {
+        "name": "section intro",
+        "height": 267
+      },
+      {
+        "name": "features",
+        "height": 931
+      },
+      {
+        "name": "how-it-works",
+        "height": 947
+      },
+      {
+        "name": "app-preview",
+        "height": 757
+      },
+      {
+        "name": "privacy",
+        "height": 959
+      },
+      {
+        "name": "download",
+        "height": 1119
+      },
+      {
+        "name": "faq",
+        "height": 628
+      }
+    ],
+    "imagesLoaded": true,
+    "apkLinks": 0,
+    "downloadDisabled": true,
+    "reducedMotion": true,
+    "faqCount": 7,
+    "developmentNotes": false
+  },
+  {
+    "width": 390,
+    "overflow": false,
+    "pageHeight": 9577,
+    "mainWords": 726,
+    "sections": [
+      {
+        "name": "hero",
+        "height": 859
+      },
+      {
+        "name": "section intro",
+        "height": 331
+      },
+      {
+        "name": "features",
+        "height": 1306
+      },
+      {
+        "name": "how-it-works",
+        "height": 1792
+      },
+      {
+        "name": "app-preview",
+        "height": 1076
+      },
+      {
+        "name": "privacy",
+        "height": 1452
+      },
+      {
+        "name": "download",
+        "height": 1502
+      },
+      {
+        "name": "faq",
+        "height": 734
+      }
+    ],
+    "imagesLoaded": true,
+    "apkLinks": 0,
+    "downloadDisabled": true,
+    "reducedMotion": true,
+    "faqCount": 7,
+    "developmentNotes": false
+  },
+  {
+    "width": 320,
+    "overflow": false,
+    "pageHeight": 10374,
+    "mainWords": 726,
+    "sections": [
+      {
+        "name": "hero",
+        "height": 879
+      },
+      {
+        "name": "section intro",
+        "height": 360
+      },
+      {
+        "name": "features",
+        "height": 1551
+      },
+      {
+        "name": "how-it-works",
+        "height": 1913
+      },
+      {
+        "name": "app-preview",
+        "height": 1060
+      },
+      {
+        "name": "privacy",
+        "height": 1624
+      },
+      {
+        "name": "download",
+        "height": 1672
+      },
+      {
+        "name": "faq",
+        "height": 791
+      }
+    ],
+    "imagesLoaded": true,
+    "apkLinks": 0,
+    "downloadDisabled": true,
+    "reducedMotion": true,
+    "faqCount": 7,
+    "developmentNotes": false
+  }
+]

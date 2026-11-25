@@ -1,0 +1,25 @@
+node_modules/
+.next/
+out/
+.expo/
+.vercel/
+.turbo/
+coverage/
+.env*
+!.env.example
+*.tsbuildinfo
+next-env.d.ts
+server.*.log
+
+# Android release and signing material must never enter the website repository.
+*.apk
+*.aab
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.mobileprovision
+*.pem
+*.key
+key.properties
+credentials.json

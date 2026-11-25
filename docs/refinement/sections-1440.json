@@ -1,0 +1,42 @@
+[
+  {
+    "height": 750.921875,
+    "name": "hero",
+    "y": 89
+  },
+  {
+    "height": 316.375,
+    "name": "section intro",
+    "y": 839.921875
+  },
+  {
+    "height": 883.53125,
+    "name": "section features-section",
+    "y": 1156.296875
+  },
+  {
+    "height": 989.40625,
+    "name": "section how-section",
+    "y": 2039.828125
+  },
+  {
+    "height": 566.6875,
+    "name": "section showcase",
+    "y": 3029.234375
+  },
+  {
+    "height": 772.796875,
+    "name": "section trust-section",
+    "y": 3595.921875
+  },
+  {
+    "height": 854.203125,
+    "name": "section download-section",
+    "y": 4368.71875
+  },
+  {
+    "height": 637.734375,
+    "name": "section faq-section",
+    "y": 5222.921875
+  }
+]

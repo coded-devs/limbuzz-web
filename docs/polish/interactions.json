@@ -1,0 +1,53 @@
+{
+  "menuOpens": true,
+  "escapeRestoresFocus": true,
+  "menuAnchorWorks": true,
+  "faqOpens": true,
+  "faqCloses": true,
+  "normalMotion": {
+    "visible": true,
+    "hiddenReveals": false
+  },
+  "reducedAnimations": 0,
+  "downloadRoute": {
+    "disabled": true,
+    "apkLinks": 0,
+    "guideSteps": 3,
+    "overflow": false
+  },
+  "routes": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/download",
+      "status": 200
+    },
+    {
+      "path": "/privacy",
+      "status": 200
+    },
+    {
+      "path": "/terms",
+      "status": 200
+    },
+    {
+      "path": "/releases",
+      "status": 200
+    },
+    {
+      "path": "/support",
+      "status": 200
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200
+    }
+  ],
+  "errors": []
+}

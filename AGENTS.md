@@ -6,9 +6,7 @@ Before changing visual identity, read `../kit/references/LIMBUZZ_Brand_Guide.pdf
 
 Keep product copy honest: hold SOS 3 seconds, SMS dispatch before the primary call, conditional location, local audio, cellular service required. Never promise delivery, rescue, or safety. Use server components unless interaction needs a client boundary. Design at 360px and 1440px with keyboard focus and reduced motion.
 
-For release changes, read the launch section in `README.md` and `src/config/release.ts`. Leave public availability gated until owner verification is complete. Legal drafts remain marked pending review. Do not invent release details or contact information.
-
-Before handoff run the quality scripts in package.json and inspect desktop/mobile layouts when browser tools are available. Report observed evidence and unresolved launch requirements separately.
+Before handoff run the quality scripts in package.json and inspect desktop/mobile layouts when browser tools are available. Report observed evidence and outstanding requirements separately.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

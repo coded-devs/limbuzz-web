@@ -29,11 +29,7 @@ export function Hero() {
                 Join the community
               </a>
             ) : (
-              <button
-                className="community-action"
-                disabled
-                aria-describedby="cover-status"
-              >
+              <button className="community-action" disabled>
                 <Icon name="users" />
                 Join the community
               </button>

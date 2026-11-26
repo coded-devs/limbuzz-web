@@ -934,7 +934,7 @@ p {
     scroll-snap-align: start;
   }
   .inside-slide-copy {
-    height: 220px;
+    min-height: 220px;
     justify-content: flex-start;
     padding: 22px 24px;
   }

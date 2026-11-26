@@ -1,6 +1,6 @@
 # LIMBUZZ website
 
-The public-facing website for LIMBUZZ, an Android app that helps people contact someone they trust in an emergency. The site explains how SOS works and shows the current Android release status.
+The public-facing website for LIMBUZZ, an Android app that helps people contact someone they trust in an emergency. The site explains how SOS works.
 
 ## Run locally
 
@@ -17,7 +17,6 @@ Open [the local site](http://localhost:3000). No environment variables are requi
 
 - Pages live in `src/app/`, shared UI in `src/components/`, and FAQs in `src/content/site.ts`.
 - The official logo and favicon are in `public/brand/`. Product previews in `public/illustrations/` are illustrations.
-- Public downloads are gated by `src/config/release.ts`. For local testing, the development server on `localhost` can serve the pinned debug build from `../LIMBUZZ-v1.0.1.apk`. The website runs without it.
 
 ## Check your changes
 

@@ -32,7 +32,7 @@ export function canServeInternalApk(
     return false;
   }
   return (
-    /^127\.0\.0\.1:\d+$/.test(host ?? "") &&
+    /^localhost:\d+$/.test(host ?? "") &&
     (fetchSite === null || fetchSite === "same-origin" || fetchSite === "none")
   );
 }

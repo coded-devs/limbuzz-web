@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 const links = [
-  ["Features", "/#features"],
   ["How it works", "/#how-it-works"],
+  ["Privacy and limits", "/#privacy"],
   ["FAQ", "/#faq"],
 ] as const;
 export function Header() {
@@ -63,7 +63,7 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <Link href="/download" className="button button-small header-cta">
+        <Link href="/download" className="text-link header-cta">
           Android release
         </Link>
         <button

@@ -1,209 +1,216 @@
 import Link from "next/link";
 import Image from "next/image";
-import { features, steps, faqs } from "@/content/site";
+import { faqs } from "@/content/site";
 import { Icon } from "./icon";
-import { CommunicationVisual } from "./communication-visual";
-import { ReleasePanel } from "./release-panel";
-import { release, isPublicRelease } from "@/config/release";
-import { JourneyGraphic, LocalRecordingGraphic } from "./journey-graphic";
-import { CarrierGraphic } from "./carrier-graphic";
+import { communityUrl } from "@/config/site";
 
 export function Hero() {
   return (
-    <section className="hero">
-      <div className="container hero-grid">
-        <div className="hero-copy">
-          <div className="eyebrow">
-            <span className="tiny-rule" />
-            PERSONAL SAFETY, MADE PRACTICAL
-          </div>
+    <section className="signal-cover">
+      <div className="container cover-spread">
+        <div className="cover-copy">
           <h1>
-            Getting help
+            One hold.
             <br />
-            shouldn’t be
-            <br />
-            <span>complicated.</span>
+            <span>Your people.</span>
           </h1>
           <p>
-            An Android personal safety app that helps you alert and call the
-            people you trust.
+            Hold SOS for three seconds in LIMBUZZ. Your Android phone starts
+            texting your emergency contacts, then calls the person you chose.
           </p>
-          <div className="hero-actions">
+          <div className="cover-actions">
             <Link href="/download" className="button">
-              <Icon name="smartphone" />
-              Android release status
+              <Icon name="download" />
+              Download the app (Android)
             </Link>
-            <a className="secondary-link" href="#how-it-works">
-              See how it works
-            </a>
+            {communityUrl ? (
+              <a className="community-action" href={communityUrl.href}>
+                <Icon name="users" />
+                Join the community
+              </a>
+            ) : (
+              <button className="community-action" disabled>
+                <Icon name="users" />
+                Join the community
+              </button>
+            )}
           </div>
-          <p className="hero-availability">
-            {isPublicRelease(release)
-              ? "Verified Android release available."
-              : "Public Android download coming soon."}
-          </p>
-          <p className="hero-note">SMS and calls require cellular service.</p>
         </div>
-        <CommunicationVisual />
-      </div>
-      <div className="hero-foot container">
-        <span>PREPARE AHEAD. REACH YOUR PEOPLE.</span>
+        <figure className="cover-art">
+          <Image
+            src="/illustrations/signal-journey.webp"
+            alt="Editorial illustration of a phone connecting people across a city."
+            width={1440}
+            height={1080}
+            sizes="(max-width: 760px) 100vw, 53vw"
+            preload
+          />
+        </figure>
       </div>
     </section>
   );
 }
-export function Features() {
+
+const chapters = [
+  {
+    id: "prepare",
+    nav: "Prepare",
+    title: "Choose your circle.",
+    body: "Add trusted people as emergency contacts. Pick one primary contact for the call, and tell them what an alert from you means.",
+    note: "Allow SMS and phone access before you need SOS.",
+  },
+  {
+    id: "activate",
+    nav: "Activate",
+    title: "Hold for three seconds.",
+    body: "Press and hold SOS in the Android app. If you release early, activation stops. Complete the hold to begin the alert.",
+    note: "You can start SOS without an internet connection.",
+  },
+  {
+    id: "alert",
+    nav: "Alert",
+    title: "Text first. Then call.",
+    body: "LIMBUZZ attempts an SMS to each chosen contact before calling your primary contact. Your first alert goes ahead without waiting for GPS.",
+    note: "With permission and a usable fix, location can follow in a separate SMS.",
+  },
+  {
+    id: "close-session",
+    nav: "Finish",
+    title: "Close the loop.",
+    body: "When you end the session, LIMBUZZ attempts an all-clear to contacts already alerted. Afterwards, you can review the session history on your phone.",
+    note: "Any emergency audio stays on your phone. Recording requires microphone access.",
+  },
+] as const;
+
+function ChapterArt({ index }: { index: number }) {
+  if (index === 0)
+    return (
+      <Image
+        className="circle-art"
+        src="/illustrations/trusted-people.webp"
+        width={1280}
+        height={853}
+        sizes="(max-width: 760px) 90vw, 44vw"
+        alt="Illustration of a woman selecting her trusted circle."
+      />
+    );
+  if (index === 1)
+    return (
+      <div
+        className="hold-plate"
+        aria-label="Illustration of a three-second hold"
+      >
+        <span className="duration">
+          3<span>sec</span>
+        </span>
+        <div className="duration-track">
+          <i />
+          <i />
+          <i />
+        </div>
+        <span>Hold SOS in the app</span>
+      </div>
+    );
+  if (index === 2)
+    return (
+      <div className="dispatch-plate" aria-label="Illustrated alert order">
+        <div>
+          <Icon name="message" />
+          <span>01</span>
+          <strong>SMS attempts</strong>
+        </div>
+        <div>
+          <Icon name="phone" />
+          <span>02</span>
+          <strong>Primary call</strong>
+        </div>
+      </div>
+    );
   return (
-    <>
-      <section className="section intro">
-        <div className="container intro-grid" data-reveal>
-          <div>
-            <p className="eyebrow">WHEN WORDS ARE HARD TO FIND</p>
-            <h2>
-              In an emergency,
-              <br />
-              small tasks add up.
-            </h2>
-          </div>
-          <div className="intro-message">
-            <p className="lead">
-              Finding a contact, writing a message, and explaining where you are
-              can be difficult when you need help.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section className="section features-section" id="features">
-        <div className="container">
-          <div className="section-heading" data-reveal>
-            <div>
-              <p className="eyebrow">PURPOSEFUL BY DESIGN</p>
-              <h2>
-                The essentials.
-                <br />
-                Working together.
-              </h2>
-            </div>
-          </div>
-          <div className="feature-grid">
-            {features.map((feature) => (
-              <article className="feature" key={feature.title} data-reveal>
-                <span className="icon-box">
-                  <Icon name={feature.icon} />
-                </span>
-                <h3>{feature.title}</h3>
-                <p>{feature.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
+    <div
+      className="record-plate"
+      aria-label="Illustration of audio stored on the phone"
+    >
+      <Icon name="audio" />
+      <svg viewBox="0 0 300 90" aria-hidden="true">
+        <path d="M0 45H300" stroke="currentColor" opacity=".4" />
+        {[
+          8, 18, 34, 50, 30, 66, 80, 38, 26, 56, 44, 14, 26, 72, 48, 26, 10, 34,
+          54, 38, 16, 8,
+        ].map((h, i) => (
+          <path
+            key={i}
+            d={`M${12 + i * 13} ${45 - h / 2}v${h}`}
+            stroke="currentColor"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+        ))}
+      </svg>
+      <strong>Stored on your phone</strong>
+    </div>
   );
 }
+
 export function HowItWorks() {
   return (
-    <section className="section how-section" id="how-it-works">
+    <section id="how-it-works" className="field-guide">
       <div className="container">
-        <div className="section-heading" data-reveal>
-          <div>
-            <p className="eyebrow">A LITTLE PREPARATION GOES A LONG WAY</p>
-            <h2>
-              Set up calmly.
-              <br />
-              Act simply.
-            </h2>
-          </div>
-          <p>
-            Make your choices ahead of time,
-            <br className="desktop-break" /> while you have the space to think.
-          </p>
-        </div>
-        <p className="journey-caption">
-          Illustrative setup guide · SOS shown here is not interactive
-        </p>
-        <ol className="journey">
-          {steps.map((step, i) => (
-            <li className="journey-stage" key={step.title} data-reveal>
-              <JourneyGraphic stage={i} />
-              <div className="journey-copy">
-                <span className="step-number">0{i + 1}</span>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
+        <header className="guide-heading">
+          <h2>Follow an alert.</h2>
+          <nav aria-label="Jump to a step">
+            {chapters.map((c, i) => (
+              <a key={c.id} href={`#${c.id}`}>
+                <span>0{i + 1}</span>
+                {c.nav}
+              </a>
+            ))}
+          </nav>
+        </header>
+        <ol className="guide-chapters">
+          {chapters.map((c, i) => (
+            <li key={c.id} id={c.id}>
+              <div className="chapter-text">
+                <span className="chapter-index">0{i + 1} / 04</span>
+                <h3>{c.title}</h3>
+                <p>{c.body}</p>
+                <p className="chapter-note">{c.note}</p>
               </div>
+              <figure className={`chapter-art plate-${i}`}>
+                <ChapterArt index={i} />
+              </figure>
             </li>
           ))}
         </ol>
-        <div className="after-hold" data-reveal>
-          <Icon name="radio" />
-          <div>
-            <h3>What happens after the hold?</h3>
-            <p>
-              SMS dispatch begins before the primary-contact call. Location
-              collection runs in parallel; a usable fix can follow in a separate
-              message.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
 }
-export { ProductArtwork as AppShowcase } from "./product-artwork";
+
 export function Trust() {
   return (
-    <section className="section trust-section" id="privacy">
+    <section className="coverage-band" id="privacy">
       <div className="container">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">KNOW WHAT TO EXPECT</p>
-            <h2>
-              Local-first.
-              <br />
-              Clear about its limits.
-            </h2>
-          </div>
-          <Link className="text-link" href="/privacy">
+        <h2 id="features">Know the limits.</h2>
+        <div>
+          <p>
+            SMS and calls need cellular service, a suitable SIM and phone
+            permissions. Carrier charges may apply. Delivery and response depend
+            on your carrier and contacts.
+          </p>
+          <p>
+            LIMBUZZ contacts your people. In an emergency, contact local
+            emergency services directly.
+          </p>
+          <Link href="/privacy" className="text-link">
             Read the privacy draft
           </Link>
         </div>
-        <div className="trust-grid" data-reveal>
-          <article>
-            <CarrierGraphic />
-            <h3>SMS and calls use your carrier.</h3>
-            <p>
-              SOS can start without internet. SMS and calls need cellular
-              service, a suitable SIM, and SMS/phone permissions. Carrier
-              charges apply.
-            </p>
-          </article>
-          <article className="local-recording-story">
-            <LocalRecordingGraphic />
-            <Icon name="audio" />
-            <h3>Your recordings stay local.</h3>
-            <p>
-              Recordings stay on your phone; they aren’t automatically uploaded
-              or sent to contacts. Microphone access is needed to record.
-            </p>
-          </article>
-          <article>
-            <Icon name="users" />
-            <h3>Response isn’t guaranteed.</h3>
-            <p>
-              LIMBUZZ does not dispatch emergency services. An SMS or call
-              attempt cannot guarantee delivery, an answer, response, or rescue.
-              Contact local emergency services directly when needed.
-            </p>
-          </article>
-        </div>
-        <p className="trust-permissions">
-          Location sharing needs permission and a usable current fix.
-          Notification permission controls whether app alerts are visible.
-        </p>
       </div>
     </section>
   );
 }
+
 export function InstallGuide() {
   return (
     <div className="install-guide">
@@ -221,7 +228,6 @@ export function InstallGuide() {
           height={540}
           sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1000px) 46vw, 520px"
         />
-        <figcaption>Prepare before you need it.</figcaption>
       </figure>
       <ol>
         {[
@@ -251,27 +257,12 @@ export function InstallGuide() {
     </div>
   );
 }
-export function DownloadSection() {
-  return (
-    <section className="section download-section" id="download">
-      <div className="container download-grid">
-        <ReleasePanel />
-        <InstallGuide />
-      </div>
-    </section>
-  );
-}
 export function FAQ() {
   return (
     <section className="section faq-section" id="faq">
       <div className="container faq-grid">
         <div>
-          <p className="eyebrow">A FEW THINGS TO KNOW</p>
-          <h2>
-            Clear answers.
-            <br />
-            Before you need them.
-          </h2>
+          <h2>Common questions</h2>
         </div>
         <div className="faq-list">
           {faqs.map(([q, a]) => (

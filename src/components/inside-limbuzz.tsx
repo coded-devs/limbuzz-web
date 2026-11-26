@@ -2,12 +2,11 @@
 
 import Image from "next/image";
 import { Maximize2, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const slides = [
   {
     title: "Emergency mode",
-    short: "Mode",
     detail: "Review activity and recovery status while an emergency is active.",
     kind: "emergency",
     image: "/illustrations/limbuzz-emergency-view-concept.webp",
@@ -15,7 +14,6 @@ const slides = [
   },
   {
     title: "Active notification",
-    short: "Notice",
     detail:
       "An Android foreground notification keeps the active emergency visible.",
     kind: "notification",
@@ -24,86 +22,34 @@ const slides = [
   },
   {
     title: "Emergency SMS",
-    short: "SMS",
-    detail: "The example alert text your phone attempts to send.",
+    detail: "An example of what an outgoing alert can communicate.",
     kind: "sms",
-    image: "/illustrations/limbuzz-sms-concept-user.png",
-    alt: "Illustrative SMS artwork showing the LIMBUZZ alert text with example Delivered labels. Those labels do not verify actual SMS delivery.",
+    image: "/illustrations/outgoing-alert.svg",
+    alt: "Diagram of an example outgoing emergency text asking a trusted contact for help.",
   },
   {
     title: "Your chosen people",
-    short: "People",
     detail: "LIMBUZZ attempts an SMS to each saved emergency contact.",
     kind: "contacts",
-    image: "/illustrations/limbuzz-multiple-sms-concept-user.png",
-    alt: "Illustrative messages-list artwork showing example LIMBUZZ alerts to several named contacts, example delivery indicators, and a profile photo. These are not verified delivery outcomes.",
+    image: "/illustrations/contact-alerts.svg",
+    alt: "Diagram showing SMS attempts branching from one phone to three chosen contacts.",
   },
 ] as const;
 
 export function InsideLimbuzz() {
   const [active, setActive] = useState(0);
-  const [playing, setPlaying] = useState(true);
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [inView, setInView] = useState(false);
-  const [pageVisible, setPageVisible] = useState(true);
-  const [hovered, setHovered] = useState(false);
-  const [focused, setFocused] = useState(false);
   const [preview, setPreview] = useState(0);
-  const section = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const dragStart = useRef<number | null>(null);
   const previewDialog = useRef<HTMLDialogElement>(null);
 
   function openPreview(index: number) {
-    setPlaying(false);
     setPreview(index);
     if (!previewDialog.current?.open) previewDialog.current?.showModal();
   }
 
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updateMotion = () => setReducedMotion(media.matches);
-    updateMotion();
-    media.addEventListener("change", updateMotion);
-    return () => media.removeEventListener("change", updateMotion);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.2 },
-    );
-    if (section.current) observer.observe(section.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const updateVisibility = () => setPageVisible(!document.hidden);
-    updateVisibility();
-    document.addEventListener("visibilitychange", updateVisibility);
-    return () =>
-      document.removeEventListener("visibilitychange", updateVisibility);
-  }, []);
-
-  useEffect(() => {
-    if (
-      !playing ||
-      reducedMotion ||
-      !inView ||
-      !pageVisible ||
-      hovered ||
-      focused
-    )
-      return;
-    const timer = window.setTimeout(() => {
-      select((active + 1) % slides.length, false);
-    }, 2000);
-    return () => window.clearTimeout(timer);
-  }, [active, playing, reducedMotion, inView, pageVisible, hovered, focused]);
-
-  function select(index: number, manual = true) {
+  function select(index: number) {
     const next = Math.max(0, Math.min(slides.length - 1, index));
-    if (manual) setPlaying(false);
     setActive(next);
     const item = track.current?.children[next] as HTMLElement | undefined;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -132,34 +78,23 @@ export function InsideLimbuzz() {
 
   return (
     <section
-      ref={section}
       className="section inside-section"
       aria-labelledby="inside-title"
       id="inside-limbuzz"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocusCapture={() => setFocused(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget))
-          setFocused(false);
-      }}
     >
       <div className="container inside-layout">
-        <div className="inside-intro">
+        <div className="inside-intro" id="app-preview">
           <div>
-            <p className="eyebrow">A CLOSER LOOK</p>
-            <h2 id="inside-title">Inside LIMBUZZ.</h2>
+            <h2 id="inside-title">Inside LIMBUZZ</h2>
           </div>
           <p>
-            Four illustrated moments from an emergency alert. Select a view or
-            swipe to explore.
+            Explore key moments from an emergency alert. Select a view or swipe
+            to explore.
           </p>
         </div>
-        <div
-          className={`inside-gallery${playing && !reducedMotion && inView && pageVisible && !hovered && !focused ? " is-advancing" : ""}`}
-        >
+        <div className="inside-gallery">
           <div className="inside-gallery-heading" aria-hidden="true">
-            <span>PRODUCT STORY / ILLUSTRATIVE</span>
+            <span>LIMBUZZ IN ACTION</span>
             <span>
               0{active + 1} / 0{slides.length}
             </span>
@@ -171,7 +106,6 @@ export function InsideLimbuzz() {
             tabIndex={0}
             onScroll={syncSwipe}
             onPointerDown={(event) => {
-              setPlaying(false);
               dragStart.current = event.clientX;
             }}
             onPointerUp={(event) => {
@@ -198,7 +132,7 @@ export function InsideLimbuzz() {
                 select(active - 1);
               }
             }}
-            aria-label="LIMBUZZ illustrative product views"
+            aria-label="LIMBUZZ product views"
           >
             {slides.map((slide, index) => (
               <figure
@@ -214,9 +148,7 @@ export function InsideLimbuzz() {
                   <h3>{slide.title}</h3>
                   <p>{slide.detail}</p>
                   <small>
-                    {index >= 2
-                      ? "Concept artwork. Delivery marks shown are examples, not verified outcomes."
-                      : "Illustrative preview based on LIMBUZZ features."}
+                    {index >= 2 ? "SMS delivery depends on your carrier." : ""}
                   </small>
                 </figcaption>
                 <div className={`inside-stage inside-stage-${slide.kind}`}>
@@ -232,17 +164,12 @@ export function InsideLimbuzz() {
                   <button
                     className="inside-expand"
                     type="button"
-                    aria-label={`Expand ${slide.title} illustrative image`}
+                    aria-label={`Expand ${slide.title} image`}
                     onClick={() => openPreview(index)}
                   >
                     <Maximize2 size={15} aria-hidden="true" />
                     <span>View larger</span>
                   </button>
-                  {index >= 2 && (
-                    <span className="inside-art-badge">
-                      DELIVERY UNVERIFIED
-                    </span>
-                  )}
                 </div>
               </figure>
             ))}
@@ -261,35 +188,28 @@ export function InsideLimbuzz() {
                 key={slide.title}
                 type="button"
                 aria-current={index === active ? "true" : undefined}
-                aria-label={`Show ${slide.title} and stop automatic slides, view ${index + 1} of ${slides.length}`}
+                aria-label={`Show ${slide.title}, view ${index + 1} of ${slides.length}`}
                 onClick={() => select(index)}
               >
                 <span className="inside-selector-index" aria-hidden="true">
                   0{index + 1}
                 </span>
                 <span className="inside-selector-label" aria-hidden="true">
-                  {slide.short}
+                  {slide.title}
                 </span>
                 <span className="inside-selector-progress" aria-hidden="true" />
               </button>
             ))}
           </div>
         </div>
-        <p className="inside-disclosure">
-          Concept images, not verified app captures. The SMS artwork contains
-          example delivery marks and a profile image; delivery, response, and
-          identity are not verified.
-        </p>
       </div>
       <dialog
         className="inside-preview-dialog"
         ref={previewDialog}
-        aria-label={`${slides[preview].title} illustrative image`}
+        aria-label={`${slides[preview].title} image`}
       >
         <div className="inside-preview-head">
-          <span>
-            {slides[preview].title} <small>Illustrative concept</small>
-          </span>
+          <span>{slides[preview].title}</span>
           <button
             type="button"
             aria-label="Close enlarged image"
@@ -306,11 +226,7 @@ export function InsideLimbuzz() {
           alt={slides[preview].alt}
           loading="eager"
         />
-        <p>
-          {preview >= 2
-            ? "Example delivery marks are part of this concept image; actual SMS delivery is unverified."
-            : "Illustrative preview based on LIMBUZZ features, not a verified app capture."}
-        </p>
+        <p>{preview >= 2 ? "SMS delivery depends on your carrier." : ""}</p>
       </dialog>
     </section>
   );

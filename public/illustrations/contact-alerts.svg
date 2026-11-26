@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" role="img">
+<title>Alerts to chosen contacts</title>
+<style>text{font-family:Arial,sans-serif}.heading{font-size:29px;font-weight:700;fill:#f8fafc}.sub{font-size:19px;fill:#acd9f3}.label{font-size:22px;fill:#f8fafc}.dark{font-size:25px;fill:#061a33}</style>
+<rect width="320" height="480" fill="#061a33"/>
+<path d="M32 43 H75" stroke="#38bdf8" stroke-width="3"/>
+<text x="32" y="92" class="heading">Chosen contacts</text>
+<text x="32" y="151" class="sub">Your phone</text>
+<path d="M47 173 V382 M47 215 H85 M47 297 H85 M47 380 H85" fill="none" stroke="#38bdf8" stroke-width="3"/>
+<g fill="#103453" stroke="#427597"><rect x="85" y="187" width="204" height="56" rx="9"/><rect x="85" y="269" width="204" height="56" rx="9"/><rect x="85" y="352" width="204" height="56" rx="9"/></g>
+<g class="label"><text x="107" y="224">Contact 1</text><text x="107" y="306">Contact 2</text><text x="107" y="389">Contact 3</text></g>
+</svg>

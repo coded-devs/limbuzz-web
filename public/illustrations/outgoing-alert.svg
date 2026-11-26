@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" role="img">
+<title>Example outgoing text</title>
+<style>text{font-family:Arial,sans-serif}.heading{font-size:29px;font-weight:700;fill:#f8fafc}.sub{font-size:19px;fill:#acd9f3}.label{font-size:22px;fill:#f8fafc}.dark{font-size:25px;fill:#061a33}</style>
+<rect width="320" height="480" fill="#061a33"/>
+<path d="M32 43 H75" stroke="#38bdf8" stroke-width="3"/>
+<text x="32" y="92" class="heading">Emergency SMS</text>
+<path d="M30 160 H290 V312 H72 L42 339 V312 H30Z" fill="#e6f2fa"/>
+<text x="52" y="202" class="dark"><tspan x="52">I need help.</tspan><tspan x="52" dy="38">Please call me</tspan><tspan x="52" dy="34">when you can.</tspan></text>
+<text x="32" y="411" class="sub">Example wording</text>
+</svg>

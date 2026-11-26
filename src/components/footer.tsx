@@ -13,7 +13,7 @@ export function Footer() {
             <p>Personal safety for Android.</p>
           </div>
           <nav aria-label="Footer navigation">
-            <Link href="/download">Android download</Link>
+            <Link href="/download">Android release status</Link>
             <Link href="/releases">Release notes</Link>
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>

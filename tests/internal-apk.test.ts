@@ -10,8 +10,8 @@ test("internal debug download is never available in production", () => {
   assert.equal(
     canServeInternalApk(
       "production",
-      "http://127.0.0.1:3000/api/internal-build",
-      "127.0.0.1:3000",
+      "http://localhost:3000/api/internal-build",
+      "localhost:3000",
       "same-origin",
     ),
     false,
@@ -19,16 +19,16 @@ test("internal debug download is never available in production", () => {
 });
 
 test("internal debug download requires the loopback development origin", () => {
-  const url = "http://127.0.0.1:3000/api/internal-build";
+  const url = "http://localhost:3000/api/internal-build";
   assert.equal(
-    canServeInternalApk("development", url, "127.0.0.1:3000", "same-origin"),
+    canServeInternalApk("development", url, "localhost:3000", "same-origin"),
     true,
   );
   assert.equal(
     canServeInternalApk(
       "development",
       "http://localhost:3000/api/internal-build",
-      "127.0.0.1:3000",
+      "localhost:3000",
       null,
     ),
     true,
@@ -41,13 +41,13 @@ test("internal debug download requires the loopback development origin", () => {
     canServeInternalApk(
       "development",
       "http://example.com/api/internal-build",
-      "127.0.0.1:3000",
+      "localhost:3000",
       "same-origin",
     ),
     false,
   );
   assert.equal(
-    canServeInternalApk("development", url, "127.0.0.1:3000", "cross-site"),
+    canServeInternalApk("development", url, "localhost:3000", "cross-site"),
     false,
   );
 });
